@@ -99,7 +99,7 @@ class value_calculator:
         correlations = df3.groupby('route')['o2d_'].apply(lambda x: x.corr(df3['o2d_']))
         filtered_routes = correlations[(correlations >= 0.0) | (correlations < 0)].index.tolist()
 
-        temp_df = df3[df3['route'].isin(set(filtered_sellers))]
+        temp_df = df3[df3['route'].isin(set(filtered_routes))]
         quant_values = temp_df.groupby('route')['o2d_'].agg(['mean', 'max', 'min']).reset_index()
         
         overall_stats = df3['o2d_'].agg(['mean', 'max', 'min']).to_frame().T
